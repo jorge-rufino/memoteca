@@ -11,7 +11,7 @@ export class CriarPensamentoComponent implements OnInit {
     id: '1',
     conteudo: 'Aprendendo Angular',
     autoria: 'Dev',
-    modelo:''
+    modelo:'modelo1'
   }
 
   constructor() { }
@@ -20,6 +20,10 @@ export class CriarPensamentoComponent implements OnInit {
   }
 
   criarPensamento() {
+    const form = document.querySelector('form') as HTMLFormElement;
+    form!.addEventListener('submit', (evento) => {
+      evento.preventDefault();
+    })
     alert("clicou");
   }
 
