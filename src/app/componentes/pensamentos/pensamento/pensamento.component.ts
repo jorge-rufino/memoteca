@@ -22,4 +22,11 @@ export class PensamentoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //Retorna a classe no CSS que é responsavel por mudar o tamanho do card de acordo com o tamanho do conteudo
+  larguraPensamento(): string {
+    if(this.pensamento.conteudo.length >= 256){
+      return 'pensamento-g';
+    }
+    return 'pensamento-p';
+  }
 }
