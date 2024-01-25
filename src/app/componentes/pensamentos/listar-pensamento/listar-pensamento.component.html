@@ -3,7 +3,11 @@
     <h2 class="ff-inter">Meu Mural</h2>
     <button routerLink="/criarPensamento" class="botao">Adicionar Pensamento</button>
   </header>
+
   <div class="mural">
-    <app-pensamento></app-pensamento>
+    <div *ngFor="let objeto of listaPensamentos">
+      <!--Entre colchetes seria o objeto do filho recebendo o valor do objeto que está entre aspas-->
+      <app-pensamento [pensamento]="objeto"></app-pensamento>
+    </div>
   </div>
 </section>
