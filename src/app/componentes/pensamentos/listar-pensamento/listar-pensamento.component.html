@@ -4,10 +4,16 @@
     <button routerLink="/criarPensamento" class="botao">Adicionar Pensamento</button>
   </header>
 
-  <div class="mural">
+  <div class="mural" *ngIf="listaPensamentos.length > 0, else semPensamentos">
     <div *ngFor="let objeto of listaPensamentos">
       <!--Entre colchetes seria o objeto do filho recebendo o valor do objeto que está entre aspas-->
       <app-pensamento [pensamento]="objeto"></app-pensamento>
     </div>
   </div>
 </section>
+
+<ng-template #semPensamentos>
+  <div class="ff-inter sem-pensamentos">
+    <p>Ainda não há Pensamentos cadastrados!</p>
+  </div>
+</ng-template>
