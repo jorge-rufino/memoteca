@@ -26,8 +26,4 @@ export class CriarPensamentoComponent implements OnInit {
     })
     alert("clicou");
   }
-
-  cancelar() {
-    alert("clicou");
-  }
 }
