@@ -1,21 +1,33 @@
 {
   "pensamentos": [
     {
-      "id": 1,
+      "id": "1",
       "conteudo": "Prefiro morrer do quê perder a vida",
       "autoria": "Chaves, El Grande",
       "modelo": "modelo1"
     },
     {
-      "id": 2,
+      "id": "2",
       "conteudo": "Se o cérebro fosse uma rede social, será que as pessoas iam começar a usar?",
       "autoria": "Desconhecido",
       "modelo": "modelo2"
     },
     {
-      "id": 3,
+      "id": "3",
       "conteudo": "O bom senso é como desodorante. As pessoas que mais precisam nunca usam",
       "autoria": "Dom Cheiroso",
+      "modelo": "modelo3"
+    },
+    {
+      "id": "39e6",
+      "conteudo": "Aprendendo Angular para virar um fullstack",
+      "autoria": "Jorge Rufino",
+      "modelo": "modelo2"
+    },
+    {
+      "id": "40ec",
+      "conteudo": "adsfasfasdaffdafdfadafsdfa",
+      "autoria": "",
       "modelo": "modelo3"
     }
   ]
