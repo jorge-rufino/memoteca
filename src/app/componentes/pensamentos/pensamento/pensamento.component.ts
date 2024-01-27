@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Pensamento } from '../pensamento';
 
 @Component({
   selector: 'app-pensamento',
@@ -11,7 +12,8 @@ export class PensamentoComponent implements OnInit {
   //é o componente ListarPensamentos. Então no html deste componente, nós setamos o objeto quei irá alimenta-lo
   //através de PropertyBinding. Consequentemente os valores que estão definidos agora serão sobrescritos.
   @Input()
-  pensamento = {
+  pensamento: Pensamento = {
+    id: 0,
     conteudo: 'I Love Angular',
     autoria: 'Jorge Rufino',
     modelo: 'modelo3'
