@@ -5,7 +5,7 @@
 /tmp
 /out-tsc
 /bazel-out
-**/backend
+/backend/db.json
 
 # Node
 **/node_modules
