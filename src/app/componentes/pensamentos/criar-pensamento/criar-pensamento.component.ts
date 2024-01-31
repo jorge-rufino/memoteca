@@ -21,14 +21,22 @@ export class CriarPensamentoComponent implements OnInit {
 
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
-      conteudo: ['', [Validators.required]],
-      autoria: ['', [Validators.required]],
+      conteudo: ['', Validators.compose([
+        Validators.required,
+        Validators.pattern(/(.|\s)*\S(.|\s)*/)    //Não permite salvar usando somente espaços em branco
+      ])],
+      autoria: ['',Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(50),
+        Validators.pattern(/(.|\s)*\S(.|\s)*/)
+      ])],
       modelo: ['modelo1']
     })
   }
 
   criarPensamento() {
-    console.log(this.formulario);
+    console.log(this.formulario.status);
     if(this.formulario.valid){
       this.pensamentoService.criar(this.formulario.value).subscribe(() => {
         this.router.navigate(['/listarPensamento']);
