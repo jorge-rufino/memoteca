@@ -6,9 +6,36 @@
   <form [formGroup]="formulario">
     <label for="pensamento">Pensamento</label>
     <input type="textarea" class="input" id="pensamento" formControlName="conteudo" placeholder="Digite o pensamento">
+
+<!--Se no "conteúdo" tiver erro de "required" e se ele foi "tocado" (se o campo entrou em foco e depois saiu do foco) -->
+    <div class="mensagem__erro" *ngIf="formulario.get('conteudo')?.errors?.['required'] && formulario.get('conteudo')?.touched">
+      Pensamento é obrigatório!
+    </div>
+<!--Se no "conteúdo" tiver erro de "pattern" e se ele foi "tocado" (se o campo entrou em foco e depois saiu do foco) -->
+    <div class="mensagem__erro" *ngIf="formulario.get('conteudo')?.errors?.['pattern'] && formulario.get('conteudo')?.touched">
+      Pensamento preenchido somente com espaços em branco!
+    </div>
+
   <!--<textarea class="input" id="pensamento" formControlName="pensamento" placeholder="Digite o pensamento"></textarea>-->
     <label for="autoria">Autoria ou fonte</label>
     <input type="text" class="input" id="autoria" formControlName="autoria" placeholder="Digite o autoria ou fonte">
+
+<!--Se na "autoria" tiver erro de "required" e se ele foi "tocado" (se o campo entrou em foco e depois saiu do foco) -->
+    <div class="mensagem__erro" *ngIf="formulario.get('autoria')?.errors?.['required'] && formulario.get('autoria')?.touched">
+      Autoria é obrigatória!
+    </div>
+<!--Se na "autoria" tiver erro de "minlength" e se ele foi "tocado" (se o campo entrou em foco e depois saiu do foco) -->
+    <div class="mensagem__erro" *ngIf="formulario.get('autoria')?.errors?.['min'] && formulario.get('autoria')?.touched">
+      Autoria precisa ter no mínimo 3 caracteres!
+    </div>
+<!--Se na "autoria" tiver erro de "maxlength" e se ele foi "tocado" (se o campo entrou em foco e depois saiu do foco) -->
+    <div class="mensagem__erro" *ngIf="formulario.get('autoria')?.errors?.['maxlength'] && formulario.get('autoria')?.touched">
+      Autoria pode ter no máximo 50 caracteres!
+    </div>
+<!--Se na "autoria" tiver erro de "pattern" e se ele foi "tocado" (se o campo entrou em foco e depois saiu do foco) -->
+    <div class="mensagem__erro" *ngIf="formulario.get('autoria')?.errors?.['pattern'] && formulario.get('autoria')?.touched">
+      Autoria preenchida somente com espaços em branco!
+    </div>
 
     <label for="modelo">Selecione o modelo do card:</label>
 
