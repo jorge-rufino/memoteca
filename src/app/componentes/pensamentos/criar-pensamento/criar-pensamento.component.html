@@ -25,7 +25,7 @@
       Autoria é obrigatória!
     </div>
 <!--Se na "autoria" tiver erro de "minlength" e se ele foi "tocado" (se o campo entrou em foco e depois saiu do foco) -->
-    <div class="mensagem__erro" *ngIf="formulario.get('autoria')?.errors?.['min'] && formulario.get('autoria')?.touched">
+    <div class="mensagem__erro" *ngIf="formulario.get('autoria')?.errors?.['minlength'] && formulario.get('autoria')?.touched">
       Autoria precisa ter no mínimo 3 caracteres!
     </div>
 <!--Se na "autoria" tiver erro de "maxlength" e se ele foi "tocado" (se o campo entrou em foco e depois saiu do foco) -->
