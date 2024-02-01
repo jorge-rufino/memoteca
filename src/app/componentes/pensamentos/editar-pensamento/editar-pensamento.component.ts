@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pensamento } from '../pensamento';
 import { PensamentoService } from '../pensamento.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-editar-pensamento',
@@ -25,17 +25,27 @@ export class EditarPensamentoComponent implements OnInit {
     this.pensamentoService.buscarPorId(id!).subscribe((pensamento) => {
       this.formulario = this.formBuilder.group({
         id:[pensamento.id],
-        conteudo:[pensamento.conteudo],
-        autoria:[pensamento.autoria],
+        conteudo:[pensamento.conteudo, Validators.compose([
+          Validators.required,
+          Validators.pattern(/(.|\s)*\S(.|\s)*/)
+        ])],
+        autoria:[pensamento.autoria, Validators.compose([
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50),
+          Validators.pattern(/(.|\s)*\S(.|\s)*/)
+        ])],
         modelo:[pensamento.modelo]
       })
     })
   }
 
   editarPensamento() {
-    this.pensamentoService.editar(this.formulario.value).subscribe(() => {
-      this.router.navigate(['/listarPensamento'])
-    })
+    if(this.formulario.valid){
+      this.pensamentoService.editar(this.formulario.value).subscribe(() => {
+        this.router.navigate(['/listarPensamento'])
+      })
+    }
   }
 
   cancelar() {
