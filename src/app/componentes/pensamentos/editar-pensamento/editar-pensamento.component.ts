@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pensamento } from '../pensamento';
 import { PensamentoService } from '../pensamento.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-editar-pensamento',
@@ -10,27 +11,29 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditarPensamentoComponent implements OnInit {
 
-  pensamento: Pensamento = {
-    id:'',
-    conteudo:'',
-    autoria:'',
-    modelo:''
-  }
+  formulario!: FormGroup;
+
   constructor(
     private pensamentoService: PensamentoService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.pensamentoService.buscarPorId(id!).subscribe((pensamento) => {
-      this.pensamento = pensamento;
+      this.formulario = this.formBuilder.group({
+        id:[pensamento.id],
+        conteudo:[pensamento.conteudo],
+        autoria:[pensamento.autoria],
+        modelo:[pensamento.modelo]
+      })
     })
   }
 
   editarPensamento() {
-    this.pensamentoService.editar(this.pensamento).subscribe(() => {
+    this.pensamentoService.editar(this.formulario.value).subscribe(() => {
       this.router.navigate(['/listarPensamento'])
     })
   }
