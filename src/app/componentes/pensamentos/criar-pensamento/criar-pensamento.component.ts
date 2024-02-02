@@ -26,13 +26,14 @@ export class CriarPensamentoComponent implements OnInit {
         Validators.required,
         Validators.pattern(/(.|\s)*\S(.|\s)*/)    //Não permite salvar usando somente espaços em branco
       ])],
-      autoria: ['',Validators.compose([
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(50),
-        Validators.pattern(/(.|\s)*\S(.|\s)*/),
-        minusculoValidator
-      ])],
+      autoria: ['',[
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50),
+          Validators.pattern(/(.|\s)*\S(.|\s)*/),
+          minusculoValidator
+        ]
+      ],
       modelo: ['modelo1']
     })
   }
