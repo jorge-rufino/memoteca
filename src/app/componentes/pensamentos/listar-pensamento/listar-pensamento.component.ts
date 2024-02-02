@@ -13,12 +13,13 @@ export class ListarPensamentoComponent implements OnInit {
   private pensamentoService = inject(PensamentoService);
 
   listaPensamentos: Pensamento[] = [];
+  private paginaAtual: number = 1;
 
   constructor() { }
 
   //Toda logica que deve ser executada assim que o componente for carregado, deve ficar aqui
   ngOnInit(): void {
-    this.pensamentoService.listar().subscribe((listaPensamentos) => {
+    this.pensamentoService.listar(this.paginaAtual).subscribe((listaPensamentos) => {
       this.listaPensamentos = listaPensamentos;
     });
   }
