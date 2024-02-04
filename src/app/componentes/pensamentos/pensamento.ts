@@ -1,5 +1,5 @@
 export interface Pensamento {
-  id?: string;
+  id?: number;
   conteudo: string;
   autoria: string;
   modelo: string;

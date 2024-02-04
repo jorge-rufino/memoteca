@@ -22,7 +22,7 @@ export class EditarPensamentoComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.pensamentoService.buscarPorId(id!).subscribe((pensamento) => {
+    this.pensamentoService.buscarPorId(parseInt(id!)).subscribe((pensamento) => {
       this.formulario = this.formBuilder.group({
         id:[pensamento.id],
         conteudo:[pensamento.conteudo, Validators.compose([

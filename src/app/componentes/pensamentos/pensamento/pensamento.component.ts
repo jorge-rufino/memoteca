@@ -13,7 +13,7 @@ export class PensamentoComponent implements OnInit {
   //através de PropertyBinding. Consequentemente os valores que estão definidos agora serão sobrescritos.
   @Input()
   pensamento: Pensamento = {
-    id: '',
+    id: 0,
     conteudo: 'I Love Angular',
     autoria: 'Jorge Rufino',
     modelo: 'modelo3'

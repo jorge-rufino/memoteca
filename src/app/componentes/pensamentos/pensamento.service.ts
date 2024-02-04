@@ -16,11 +16,13 @@ export class PensamentoService {
   constructor(private http: HttpClient) { }
 
   listar(pagina: number): Observable<Pensamento[]> {
-    const itensPorPagina = 5;
+    const itensPorPagina = 6;
 
     let parametros = new HttpParams()
         .set('_page', pagina)
-        .set('_limit', itensPorPagina);
+        .set('_limit', itensPorPagina)
+        .set('_sort', 'id')
+        .set('_order', 'desc');
 
     //Se tivesse escrito a variavel "parametros" como "params", poderiamos passa-la direto pois estaria sobrescrevendo "params"
     return this.http.get<Pensamento[]>(this.APIurl, { params: parametros });
@@ -33,12 +35,12 @@ export class PensamentoService {
     return this.http.post<Pensamento>(this.APIurl, pensamento);
   }
 
-  excluir(id: string): Observable<Pensamento>{
+  excluir(id: number): Observable<Pensamento>{
     const url = `${this.APIurl}/${id}`;
     return this.http.delete<Pensamento>(url);
   }
 
-  buscarPorId(id: string): Observable<Pensamento>{
+  buscarPorId(id: number): Observable<Pensamento>{
     const url = `${this.APIurl}/${id}`;
     return this.http.get<Pensamento>(url);
   }
