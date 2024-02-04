@@ -13,7 +13,8 @@ export class ListarPensamentoComponent implements OnInit {
   private pensamentoService = inject(PensamentoService);
 
   listaPensamentos: Pensamento[] = [];
-  private paginaAtual: number = 1;
+  paginaAtual: number = 1;
+  temMaisPensamentos: boolean = true;
 
   constructor() { }
 
@@ -24,4 +25,17 @@ export class ListarPensamentoComponent implements OnInit {
     });
   }
 
+  //Toda vez que for clicado no botao ele irá incrimentar para a próxima página da paginação
+  carregarMaisPensamentos() {
+    this.pensamentoService.listar(++this.paginaAtual).subscribe(listaPensamentos => {
+      //Como queremos que a lista seja expandida mostrando os novos elementos, vamos adicionar na lista os novos elementos
+      //da próxima página
+      this.listaPensamentos.push(...listaPensamentos);
+
+      //Se o tamanho da lista for 0, quer dizer que não tem mais elementos
+      if(!listaPensamentos.length){
+        this.temMaisPensamentos = false;
+      }
+    })
+  }
 }
