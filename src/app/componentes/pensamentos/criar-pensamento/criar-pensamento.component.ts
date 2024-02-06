@@ -9,6 +9,7 @@ interface MeuFormulario {
   conteudo: any;
   autoria: any;
   modelo: any;
+  favorito: any;
 }
 
 @Component({
@@ -42,7 +43,8 @@ export class CriarPensamentoComponent implements OnInit {
           minusculoValidator
         ]
       ],
-      modelo: ['modelo1']
+      modelo: ['modelo1'],
+      favorito: [false]
     })
   }
 

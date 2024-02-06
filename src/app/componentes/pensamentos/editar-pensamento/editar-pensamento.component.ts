@@ -35,7 +35,8 @@ export class EditarPensamentoComponent implements OnInit {
           Validators.maxLength(50),
           Validators.pattern(/(.|\s)*\S(.|\s)*/)
         ])],
-        modelo:[pensamento.modelo]
+        modelo:[pensamento.modelo],
+        favorito:[pensamento.favorito]
       })
     })
   }

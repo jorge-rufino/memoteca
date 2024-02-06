@@ -16,7 +16,8 @@ export class PensamentoComponent implements OnInit {
     id: 0,
     conteudo: 'I Love Angular',
     autoria: 'Jorge Rufino',
-    modelo: 'modelo3'
+    modelo: 'modelo3',
+    favorito: false
   };
 
   constructor() { }
@@ -30,5 +31,14 @@ export class PensamentoComponent implements OnInit {
       return 'pensamento-g';
     }
     return 'pensamento-p';
+  }
+
+  mudarIconeFavorito(): string {
+    if(this.pensamento.favorito) {
+      return 'ativo';
+    } else {
+      return 'inativo';
+    }
+
   }
 }
