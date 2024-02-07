@@ -59,4 +59,11 @@ export class ListarPensamentoComponent implements OnInit {
       this.listaFavoritos = listaPensamentos;
     })
   }
+
+  recarregarComponente() {
+    this.favoritos =  false;
+    this.temMaisPensamentos = true;
+    this.paginaAtual = 1;
+    this.ngOnInit();
+  }
 }
