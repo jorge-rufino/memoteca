@@ -15,7 +15,7 @@ export class PensamentoService {
   //Quando passamos o modificador de acesso no construtor, automaticamente é criado um atributo de classe de mesmo nome
   constructor(private http: HttpClient) { }
 
-  listar(pagina: number, filtro: string): Observable<Pensamento[]> {
+  listar(pagina: number, filtro: string, favoritos?: boolean): Observable<Pensamento[]> {
     const itensPorPagina = 6;
 
     let parametros = new HttpParams()
@@ -27,6 +27,10 @@ export class PensamentoService {
     //Se tiver pelo menos 2 letras para serem pesquisadas, ele faz o filtro
     if(filtro.trim().length > 2){
       parametros = parametros.set('q', filtro);
+    }
+
+    if(favoritos) {
+      parametros = parametros.set('favorito', true);
     }
 
     //Se tivesse escrito a variavel "parametros" como "params", poderiamos passa-la direto pois estaria sobrescrevendo "params"

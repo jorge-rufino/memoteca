@@ -16,19 +16,20 @@ export class ListarPensamentoComponent implements OnInit {
   paginaAtual: number = 1;
   temMaisPensamentos: boolean = true;
   filtro:string = '';
+  favoritos: boolean = false;
 
   constructor() { }
 
   //Toda logica que deve ser executada assim que o componente for carregado, deve ficar aqui
   ngOnInit(): void {
-    this.pensamentoService.listar(this.paginaAtual, this.filtro).subscribe((listaPensamentos) => {
+    this.pensamentoService.listar(this.paginaAtual, this.filtro, this.favoritos).subscribe((listaPensamentos) => {
       this.listaPensamentos = listaPensamentos;
     });
   }
 
   //Toda vez que for clicado no botao ele irá incrimentar para a próxima página da paginação
   carregarMaisPensamentos() {
-    this.pensamentoService.listar(++this.paginaAtual, this.filtro).subscribe(listaPensamentos => {
+    this.pensamentoService.listar(++this.paginaAtual, this.filtro, this.favoritos).subscribe(listaPensamentos => {
       //Como queremos que a lista seja expandida mostrando os novos elementos, vamos adicionar na lista os novos elementos
       //da próxima página
       this.listaPensamentos.push(...listaPensamentos);
@@ -43,7 +44,16 @@ export class ListarPensamentoComponent implements OnInit {
   pesquisarPensamentos() {
     this.temMaisPensamentos = true;
     this.paginaAtual = 1;
-    this.pensamentoService.listar(this.paginaAtual, this.filtro).subscribe(listaPensamentos => {
+    this.pensamentoService.listar(this.paginaAtual, this.filtro, this.favoritos).subscribe(listaPensamentos => {
+      this.listaPensamentos = listaPensamentos;
+    })
+  }
+
+  listarFavoritos() {
+    this.temMaisPensamentos = true;
+    this.paginaAtual = 1;
+    this.favoritos = true;
+    this.pensamentoService.listar(this.paginaAtual, this.filtro, this.favoritos).subscribe(listaPensamentos => {
       this.listaPensamentos = listaPensamentos;
     })
   }
