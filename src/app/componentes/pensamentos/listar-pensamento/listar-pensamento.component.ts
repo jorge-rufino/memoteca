@@ -18,7 +18,10 @@ export class ListarPensamentoComponent implements OnInit {
   temMaisPensamentos: boolean = true;
   filtro:string = '';
   favoritos: boolean = false;
-  listaFavoritos: Pensamento[] = []
+  listaFavoritos: Pensamento[] = [];
+
+//Se estivessemos utilizando a chamada do "ngOnInit" para recarregar o componente, teriamos que alterar "titulo" em "recarregarComponente()"
+  titulo: string = 'Meu Mural';
 
   constructor(private router: Router) { }
 
@@ -55,6 +58,7 @@ export class ListarPensamentoComponent implements OnInit {
     this.temMaisPensamentos = true;
     this.paginaAtual = 1;
     this.favoritos = true;
+    this.titulo = 'Meus Favoritos';
     this.pensamentoService.listar(this.paginaAtual, this.filtro, this.favoritos).subscribe(listaPensamentos => {
       this.listaPensamentos = listaPensamentos;
       this.listaFavoritos = listaPensamentos;
