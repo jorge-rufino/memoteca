@@ -1,6 +1,7 @@
 import { PensamentoService } from './../pensamento.service';
 import { Component, OnInit, inject } from '@angular/core';
 import { Pensamento } from '../pensamento';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-pensamento',
@@ -19,7 +20,7 @@ export class ListarPensamentoComponent implements OnInit {
   favoritos: boolean = false;
   listaFavoritos: Pensamento[] = []
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   //Toda logica que deve ser executada assim que o componente for carregado, deve ficar aqui
   ngOnInit(): void {
@@ -62,8 +63,9 @@ export class ListarPensamentoComponent implements OnInit {
 
   recarregarComponente() {
     this.favoritos =  false;
-    this.temMaisPensamentos = true;
     this.paginaAtual = 1;
-    this.ngOnInit();
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([this.router.url]);
   }
 }
