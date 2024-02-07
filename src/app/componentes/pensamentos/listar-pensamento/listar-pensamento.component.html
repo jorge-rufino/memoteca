@@ -16,8 +16,12 @@
 
   <div class="mural" *ngIf="listaPensamentos.length > 0, else semPensamentos">
     <div *ngFor="let objeto of listaPensamentos">
-      <!--Entre colchetes seria o objeto do filho recebendo o valor do objeto que está entre aspas-->
-      <app-pensamento [pensamento]="objeto"></app-pensamento>
+      <!--Entre colchetes seria o objeto do Filho (Pensamento.component) recebendo o valor do objeto Pai que está entre aspas
+        (Lista-pensamento.component)-->
+      <app-pensamento
+        [pensamento]="objeto"
+        [listaFavoritos]="listaFavoritos">
+      </app-pensamento>
     </div>
   </div>
 </section>
